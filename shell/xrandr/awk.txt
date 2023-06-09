@@ -1,0 +1,3 @@
+ grep -B 0 "Modeline" res.txt | awk '{printf $1="";print $0}'
+
+gtf 2560 1600 60 | grep -B 0 "Modeline" | awk '{printf $1="";print $0}'
