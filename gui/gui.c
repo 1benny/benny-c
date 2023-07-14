@@ -5,28 +5,46 @@
 //
 //
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
-#include <windows.h>
+#include <Windows.h>
+#include <mmsystem.h>
+
+#pragma comment(lib, "winmm.lib")
+
+
+void playIdiot(int spawn);
+
+void spawnBox();
 
 int main(int argc, char* argv[])
 {
-    LPCWSTR message = L"Unicode message box, with MessageBoxW";
-    LPCWSTR caption = L"Example Box";
+    LPCWSTR message = L"Are you an idiot?";
+    LPCWSTR caption = L"Attention";
 
-    int result = MessageBoxA(NULL, "Hi Sisters", "Warning", MB_YESNO | MB_ICONERROR);
+    int ask = MessageBoxW(NULL, message, caption, MB_YESNO | MB_ICONASTERISK);
 
-    if (result == IDYES) {
-        int test = MessageBoxW(NULL, message, caption, MB_OK | MB_ICONINFORMATION);
-        if (test == IDOK) {
-            exit(0);
-        } else {
-            exit(0);
-        }
-    } else if (result == IDNO) {
-        printf("You clicked 'No'.\n");
+    if (ask == IDNO) {
+        spawnBox();
+    } else {
+        exit(0);
     }
 	
 	return 0;
+}
+
+void spawnBox()
+{
+    int status = 0;
+
+    for (int result = MessageBoxA(NULL, "Are you sure?", "Warning", MB_YESNO | MB_ICONERROR); result == IDNO; status++) {
+        playIdiot(status);
+    }
+
+}
+
+void playIdiot(int spawn)
+{
+    if (spawn < 5) {
+        BOOL sound = PlaySound(TEXT("idiot.wav"), NULL, SND_FILENAME);
+    }
 }
