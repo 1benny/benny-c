@@ -7,7 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
+#include <mmsystem.h>
 
+#pragma comment(lib, "winmm.lib")
+
+
+void playIdiot(int spawn);
 
 void spawnBox();
 
@@ -32,7 +37,14 @@ void spawnBox()
     int status = 0;
 
     for (int result = MessageBoxA(NULL, "Are you sure?", "Warning", MB_YESNO | MB_ICONERROR); result == IDNO; status++) {
-        printf("Sure");
+        playIdiot(status);
     }
 
+}
+
+void playIdiot(int spawn)
+{
+    if (spawn < 5) {
+        BOOL sound = PlaySound(TEXT("idiot.wav"), NULL, SND_FILENAME);
+    }
 }

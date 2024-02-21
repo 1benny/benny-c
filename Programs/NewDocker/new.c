@@ -1,7 +1,7 @@
 // Tue Jun 06 05:42:54 2023
 // bdxves
 //
-// nd.c
+// new.c
 //
 //
 #include <stdio.h>
