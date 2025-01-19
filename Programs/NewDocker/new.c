@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     char* HOMEPATH = strcat(getenv("USERPROFILE"), "\\TEMPLATES\\");
         strcat(HOMEPATH, argv[1]);
     
-    char* USERNAME = "bdxves";  //~ Needs functionality for being able to pick username. Maybe read from .conf file
+    char* USERNAME = "1benny";  //~ Needs functionality for being able to pick username. Maybe read from .conf file
     char buffer[256];
     char path[256];
     char* fname = argv[2];
