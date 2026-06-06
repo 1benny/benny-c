@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     FILE* TEMPLATE;
     FILE* newfile;
 
-    char* HOMEPATH = strcat(getenv("USERPROFILE"), "\\TEMPLATES\\");
+    char* HOMEPATH = strcat(getenv("USERPROFILE"), "\\Documents\\newdoc_TEMPLATES\\");
         strcat(HOMEPATH, argv[1]);
     
     char* USERNAME = "1benny";  //~ Needs functionality for being able to pick username. Maybe read from .conf file
