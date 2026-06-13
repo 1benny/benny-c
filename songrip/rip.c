@@ -6,15 +6,35 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdbool.h>
 
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <SoundCloud URL>\n", argv[0]);
+        return 1;
+    }
 
-int main(int argc, char** argv[]) 
-{
+    const char *url = argv[1];
 
+    // Build command string
+    char command[2048];
 
+    snprintf(command, sizeof(command),
+        "yt-dlp -x --audio-format mp3 --audio-quality 0 "
+        "--embed-metadata --embed-thumbnail "
+        "-o \"%%(artist)s - %%(title)s.%%(ext)s\" "
+        "\"%s\"",
+        url
+    );
 
-	return 0;
+    printf("Running command:\n%s\n\n", command);
+
+    int result = system(command);
+
+    if (result != 0) {
+        fprintf(stderr, "Error: yt-dlp command failed.\n");
+        return 1;
+    }
+
+    printf("Download completed successfully.\n");
+    return 0;
 }
